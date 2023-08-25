@@ -3,6 +3,7 @@
 namespace duckdb {
 
 void BuiltinFunctions::RegisterGenericFunctions() {
+	Register<AutoDiff>();
 	Register<ConstantOrNull>();
 	Register<ExportAggregateFunction>();
 }

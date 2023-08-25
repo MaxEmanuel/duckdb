@@ -15,6 +15,13 @@
 namespace duckdb {
 class BoundFunctionExpression;
 
+struct AutoDiff {
+	static ScalarFunction GetFunction(const LogicalType &return_type);
+	static unique_ptr<FunctionData> Bind(Value value);
+	static bool IsConstantOrNull(BoundFunctionExpression &expr, const Value &val);
+	static void RegisterFunction(BuiltinFunctions &set);
+};
+
 struct ConstantOrNull {
 	static ScalarFunction GetFunction(const LogicalType &return_type);
 	static unique_ptr<FunctionData> Bind(Value value);
