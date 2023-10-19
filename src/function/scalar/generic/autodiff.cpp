@@ -34,11 +34,11 @@ static unique_ptr<FunctionData> AutoDiffBind(ClientContext &context, ScalarFunct
                                                vector<unique_ptr<Expression>> &arguments) {
 
 	// at least a column and the lambda function
-	D_ASSERT(arguments.size() == 2);
-	if (arguments[1]->expression_class != ExpressionClass::BOUND_LAMBDA) {
+	D_ASSERT(arguments.size() >= 2);
+	if (arguments[arguments.size()-1]->expression_class != ExpressionClass::BOUND_LAMBDA) {
 		throw BinderException("Invalid lambda expression!");
 	}
-	auto &bound_lambda_expr = (BoundLambdaExpression &)*arguments[1];
+	auto &bound_lambda_expr = (BoundLambdaExpression &)*arguments[arguments.size()-1];
 	//bound_function.return_type = arguments[0]->return_type;
 	auto lambda_expr = std::move(bound_lambda_expr.lambda_expr);
 	return make_uniq<AutoDiffLambdaBindData>(bound_function.return_type,std::move(lambda_expr));
