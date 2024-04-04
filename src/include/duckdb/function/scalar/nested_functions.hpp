@@ -88,6 +88,11 @@ struct ListConcatFun {
 	static void RegisterFunction(BuiltinFunctions &set);
 };
 
+struct ListMathFun {
+	static ScalarFunction GetFunction();
+	static void RegisterFunction(BuiltinFunctions &set);
+};
+
 struct ListContainsFun {
 	static ScalarFunction GetFunction();
 	static void RegisterFunction(BuiltinFunctions &set);
